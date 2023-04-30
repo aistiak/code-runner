@@ -14,6 +14,7 @@ function Home() {
                     <select onChange={(e) => {
                         setLang(e.target.value)
                         setCode(``)
+                        setOut(``)
                     }}>
                         <option value={'python'}>python3</option>
                         <option value={'node'}>Node.js</option>
