@@ -5,22 +5,27 @@ import { useState } from 'react';
 
 function Home() {
 
-    const [lang, setLang] = useState('python')
-    const [code, setCode] = useState('')
-    const [out, setOut] = useState('')
+    const [lang, setLang] = useState('python');
+    const [code, setCode] = useState('');
+    const [out, setOut] = useState('');
+    const [loading ,setLoading] = useState(false)
     return (
         <>
             <div>
                 <div>
                     <select onChange={(e) => {
                         setLang(e.target.value)
+                        setCode(``)
                     }}>
                         <option value={'python'}>python3</option>
-                        <option value={'node'}>nodejs</option>
+                        <option value={'node'}>Node.js</option>
+                        <option value={'golang'}>GO</option>
+                        {/* <option value={'typescript'}>TypeScript</option> */}
                     </select>
                 </div>
                 <div>
-                    <button onClick={async () => {
+                    <button disabled={loading}  onClick={async () => {
+                        setLoading(true)
                         console.log({
                             lang,
                             code
@@ -38,9 +43,12 @@ function Home() {
                             })
                         })
                         // console.log(
-                        const t = await res1.json()
-                        setOut(t)
-                    }}>run</button>
+                        const res2 = await res1.json()
+                        setOut(res2)
+                        setLoading(false)
+                    }}>
+                      { loading ?  'running' :`run`}
+                    </button>
                 </div>
                 <div>
                     <textarea value={code} onChange={((e) => setCode(e.target.value))} name="" id="" cols="30" rows="10"></textarea>

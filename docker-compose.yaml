@@ -4,9 +4,18 @@
 services:
   server:
     build:
-      context: ./
+      context: ./backend
       dockerfile: Dockerfile
     ports:
       - 3000:3000
     volumes:
       - ./backend:/app
+  client:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports: 
+      - 3001:3001
+    volumes:
+      - ./frontend:/home/node/app
+      - ./frontend/node_modules:/home/node/app/node_modules  
