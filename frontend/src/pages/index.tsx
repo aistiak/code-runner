@@ -1,5 +1,3 @@
-
-
 // import axios from 'axios' ;
 import { useState } from 'react';
 
@@ -11,8 +9,8 @@ function Home() {
     const [loading ,setLoading] = useState(false)
     return (
         <>
-            <div>
-                <div>
+            <div className='main'>
+                <div className='lang_selector'>
                     <select onChange={(e) => {
                         setLang(e.target.value)
                         setCode(``)
@@ -23,7 +21,7 @@ function Home() {
                         {/* <option value={'typescript'}>TypeScript</option> */}
                     </select>
                 </div>
-                <div>
+                <div className='run_btn'>
                     <button disabled={loading}  onClick={async () => {
                         setLoading(true)
                         console.log({
@@ -50,11 +48,13 @@ function Home() {
                       { loading ?  'running' :`run`}
                     </button>
                 </div>
-                <div>
-                    <textarea value={code} onChange={((e) => setCode(e.target.value))} name="" id="" cols="30" rows="10"></textarea>
-                </div>
-                <div>
-                    <textarea value={out} name="" id="" cols="30" rows="10"></textarea>
+                <div className='code_stds'>
+                    <div className='code_input'>
+                        <textarea value={code} onChange={((e) => setCode(e.target.value))} name="" id="" cols="30" rows="10"></textarea>
+                    </div>
+                    <div className='code_output'>
+                        <textarea value={out} name="" id="" cols="30" rows="10"></textarea>
+                    </div>
                 </div>
             </div>
         </>
